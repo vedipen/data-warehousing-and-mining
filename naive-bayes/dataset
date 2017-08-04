@@ -1,50 +1,16 @@
-Barclays M
-MorganStanley F
-Barclays M
-IndusValleyPartners M
-Barclays M
-MorganStanley M
-IndusValleyPartners M
-Barclays M
-IndusValleyPartners F
-Barclays F
-MorganStanley M
-Barclays F
-Barclays M
-IndusValleyPartners M
-Barclays F
-IndusValleyPartners M
-MorganStanley M
-Barclays F
-MorganStanley F
-MorganStanley M
-Barclays M
-IndusValleyPartners F
-Barclays F
-MorganStanley M
-Barclays F
-IndusValleyPartners M
-Barclays F
-MorganStanley F
-Barclays M
-IndusValleyPartners M
-Barclays M
-MorganStanley M
-Barclays M
-IndusValleyPartners M
-Barclays M
-MorganStanley M
-Barclays M
-IndusValleyPartners M
-MorganStanley F
-IndusValleyPartners F
-Barclays M
-MorganStanley F
-IndusValleyPartners M
-MorganStanley M
-Barclays F
-IndusValleyPartners M
-MorganStanley F
-IndusValleyPartners M
-Barclays F
-
+outlook temp humidity windy play
+sunny hot high false no
+sunny hot high true no
+overcast hot high false yes
+rainy mild high false yes
+rainy cool normal false yes
+rainy cool normal true no
+overcast cool normal true yes
+sunny mild high false no
+sunny cool normal false yes
+rainy mild normal false yes
+sunny mild normal true yes
+sunny mild normal false yes
+overcast mild high true yes
+overcast hot normal false yes
+rainy mild high true no
