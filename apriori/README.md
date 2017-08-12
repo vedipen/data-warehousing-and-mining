@@ -13,7 +13,7 @@
 For input file - '/database'
 
 ```
-Enter minimum support % : 30
+Enter minimum support % : 30        
 Enter minimum confidence % : 60
 
 Total Transactions : 18
@@ -83,7 +83,7 @@ CPU => Monitor^Mouse			5		5/13 = 0.38		38
 Monitor => CPU^Mouse			5		5/12 = 0.42		42
 
 
-Minimum confidence % : 60%
+Minimum confidence % is 60%
 
 Association Rule			Support		Confidence %
 ---------------------------------------------------------------------

@@ -38,7 +38,6 @@ int main() {
     string token;
     while ((pos=s.find(delimiter)) != string::npos) {
         token = s.substr(0, pos);
-        // cout << token << endl;
         c1[token]++;
         v[i].pb(token);
         s.erase(0, pos + delimiter.length());
@@ -46,7 +45,6 @@ int main() {
     v[i].pb(s);
     i++;
     c1[s]++;
-    // cout<<s<<endl;
   }
 
   //Finding support
@@ -164,7 +162,7 @@ int main() {
   }
   cout<<endl<<endl;
 
-  //Contraint Check
+  //Constraint Check
   if(l3.size()!=1) {
     return 0;
   }
@@ -239,7 +237,7 @@ int main() {
   cout<<endl<<endl;
 
   //Final Association Rules
-  cout<<"Minimum confidence % : "<<minConfidence<<"%"<<endl<<endl;
+  cout<<"Minimum confidence % is "<<minConfidence<<"%"<<endl<<endl;
   cout<<"Association Rule\t\t\tSupport\t\tConfidence %"<<endl;
   cout<<"---------------------------------------------------------------------"<<endl;
   for(auto it1=finalAssociation.begin();it1!=finalAssociation.end();it1++) {
