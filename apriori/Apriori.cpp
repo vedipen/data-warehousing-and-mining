@@ -7,15 +7,15 @@ using namespace std;
 
 int main() {
   ll minSupport,minConfidence;
-  cout<<"Enter min support % : ";
+  cout<<"Enter minimum support % : ";
   cin>>minSupport;
-  cout<<"Enter min confidence % : ";
+  cout<<"Enter minimum confidence % : ";
   cin>>minConfidence;
-  freopen("database1","r",stdin);
+  // freopen("database1","r",stdin); //For Eg. minimum support : 60, minimum confidence : 80
+  freopen("database","r",stdin); //For Eg. minimum support : 30, minimum confidence : 60
   string s1;
   ll noOfTransaction=0;
   map<string,ll> c1,l1,c2,l2,c3,l3;
-  map<string,double> association;
   vector< vector<string> > v(100);
   ll i=0;
   while(1) {
@@ -170,9 +170,11 @@ int main() {
   }
 
   //Association Rules
+  cout<<"Association rule for "<<l3.begin()->first<<" --->"<<endl<<endl;
   vector<ll> confidenceTable;
+  map<string,double> association,finalAssociation;
   cout<<"Association Rule\t\tSupport\t\tConfidence\t\tConfidence %"<<endl;
-  cout<<"--------------------------------------------------------------------------------------"<<endl;
+  cout<<"--------------------------------------------------------------------------------------------"<<endl;
   auto it=l3.begin();
   string full=it->first;
   string one=full.substr(0,full.find(","));
@@ -180,22 +182,78 @@ int main() {
   string two=full.substr(0,full.find(","));
   full.erase(0,full.find(",")+1);
   string three=full;
-  //one,two -> three
-  //two,three -> one
-  //one,three -> two
-  //three -> one,two
-  //one -> two,three
-  //two -> one,three
-  confidenceTable.pb(l2[one+","+two]);
-  confidenceTable.pb(l2[two+","+three]);
-  confidenceTable.pb(l2[one+","+three]);
-  confidenceTable.pb(l1[three]);
-  confidenceTable.pb(l1[one]);
-  confidenceTable.pb(l1[two]);
-  association[one+"^"+two+"=>"+three]=(double)(it->second)*1.00/(confidenceTable[0]);
-  cout<<one<<"^"<<two<<" => "<<three<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[0]<<" = "<<association[one+"^"+two+"=>"+three]<<"\t\t"<<association[one+"^"+two+"=>"+three]*100<<endl;
-  association[two+"^"+three+"=>"+one]=(double)(it->second)*1.00/(confidenceTable[1]);
-  cout<<two<<"^"<<three<<" => "<<one<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[1]<<" = "<<association[two+"^"+three+"=>"+one]<<"\t\t"<<association[two+"^"+three+"=>"+one]*100<<endl;
 
+  //one,two -> three
+  confidenceTable.pb(l2[one+","+two]);
+  association[one+"^"+two+"=>"+three]=(double)(it->second)*1.00/(confidenceTable[0]);
+  //For final association
+  if(association[one+"^"+two+"=>"+three]*100>=minConfidence) {
+    finalAssociation[one+"^"+two+"=>"+three]=association[one+"^"+two+"=>"+three]*100;
+  }
+  cout<<fixed<<setprecision(2)<<one<<"^"<<two<<" => "<<three<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[0]<<" = "<<association[one+"^"+two+"=>"+three]<<"\t\t"<<fixed<<setprecision(0)<<association[one+"^"+two+"=>"+three]*100<<endl;
+
+  //two,three -> one
+  confidenceTable.pb(l2[two+","+three]);
+  association[two+"^"+three+"=>"+one]=(double)(it->second)*1.00/(confidenceTable[1]);
+  //For final association
+  if(association[two+"^"+three+"=>"+one]*100>=minConfidence) {
+    finalAssociation[two+"^"+three+"=>"+one]=association[two+"^"+three+"=>"+one]*100;
+  }
+  cout<<fixed<<setprecision(2)<<two<<"^"<<three<<" => "<<one<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[1]<<" = "<<association[two+"^"+three+"=>"+one]<<"\t\t"<<fixed<<setprecision(0)<<association[two+"^"+three+"=>"+one]*100<<endl;
+
+  //one,three -> two
+  confidenceTable.pb(l2[one+","+three]);
+  association[one+"^"+three+"=>"+two]=(double)(it->second)*1.00/(confidenceTable[2]);
+  //For final association
+  if(association[one+"^"+three+"=>"+two]*100>=minConfidence) {
+    finalAssociation[one+"^"+three+"=>"+two]=association[one+"^"+three+"=>"+two]*100;
+  }
+  cout<<fixed<<setprecision(2)<<one<<"^"<<three<<" => "<<two<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[2]<<" = "<<association[one+"^"+three+"=>"+two]<<"\t\t"<<fixed<<setprecision(0)<<association[one+"^"+three+"=>"+two]*100<<endl;
+
+  //three -> one,two
+  confidenceTable.pb(l1[three]);
+  association[three+"=>"+one+"^"+two]=(double)(it->second)*1.00/(confidenceTable[3]);
+  //For final association
+  if(association[three+"=>"+one+"^"+two]*100>=minConfidence) {
+    finalAssociation[three+"=>"+one+"^"+two]=association[three+"=>"+one+"^"+two]*100;
+  }
+  cout<<fixed<<setprecision(2)<<three<<" => "<<one<<"^"<<two<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[3]<<" = "<<association[three+"=>"+one+"^"+two]<<"\t\t"<<fixed<<setprecision(0)<<association[three+"=>"+one+"^"+two]*100<<endl;
+
+  //one -> two,three
+  confidenceTable.pb(l1[one]);
+  association[one+"=>"+two+"^"+three]=(double)(it->second)*1.00/(confidenceTable[4]);
+  //For final association
+  if(association[one+"=>"+two+"^"+three]*100>=minConfidence) {
+    finalAssociation[one+"=>"+two+"^"+three]=association[one+"=>"+two+"^"+three]*100;
+  }
+  cout<<fixed<<setprecision(2)<<one<<" => "<<two<<"^"<<three<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[4]<<" = "<<association[one+"=>"+two+"^"+three]<<"\t\t"<<fixed<<setprecision(0)<<association[one+"=>"+two+"^"+three]*100<<endl;
+
+  //two -> one,three
+  confidenceTable.pb(l1[two]);
+  association[two+"=>"+one+"^"+three]=(double)(it->second)*1.00/(confidenceTable[5]);
+  //For final association
+  if(association[two+"=>"+one+"^"+three]*100>=minConfidence) {
+    finalAssociation[two+"=>"+one+"^"+three]=association[two+"=>"+one+"^"+three]*100;
+  }
+  cout<<fixed<<setprecision(2)<<two<<" => "<<one<<"^"<<three<<"\t\t\t"<<it->second<<"\t\t"<<it->second<<"/"<<confidenceTable[5]<<" = "<<association[two+"=>"+one+"^"+three]<<"\t\t"<<fixed<<setprecision(0)<<association[two+"=>"+one+"^"+three]*100<<endl;
+  cout<<endl<<endl;
+
+  //Final Association Rules
+  cout<<"Minimum confidence % : "<<minConfidence<<"%"<<endl<<endl;
+  cout<<"Association Rule\t\t\tSupport\t\tConfidence %"<<endl;
+  cout<<"---------------------------------------------------------------------"<<endl;
+  for(auto it1=finalAssociation.begin();it1!=finalAssociation.end();it1++) {
+    cout<<it1->first<<"\t\t\t\t"<<it->second<<"\t\t"<<it1->second<<endl;
+  }
+  cout<<endl<<endl;
+
+  //Printing Result
+  cout<<"Final Association Rules for Market-Basket Analysis are : "<<endl;
+  for(auto it1=finalAssociation.begin();it1!=finalAssociation.end();it1++) {
+    cout<<it1->first<<endl;
+  }
+  cout<<endl;
   return 0;
 }
+
+//vedipen
