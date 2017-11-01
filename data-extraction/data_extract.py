@@ -52,7 +52,7 @@ def extract_db():
 
 choice = 1
 while choice < 5 and choice > 0 :
-	choice = int(input('\nEnter your choice: \n1. Create Database\n2.Extract into common Database\n3.Display Common Database\n4.Delete All Databases\n5.Exit\n>> '))
+	choice = int(input('\nEnter your choice: \n1.Create Database\n2.Extract into common Database\n3.Display Common Database\n4.Delete All Databases\n5.Exit\n>> '))
 	if choice == 1:
 		create_db()
 		print('Databases Created!')
@@ -68,6 +68,9 @@ while choice < 5 and choice > 0 :
 			for table_name in names:
 				print('\n\n')
 				print(pd.read_sql_query(query + table_name, db))
+			if db:
+				db.close()
+			print('Common Database deleted!')
 		except:
 			print('No common database found!')
 	elif choice == 4:

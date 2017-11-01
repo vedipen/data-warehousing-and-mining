@@ -1,0 +1,9 @@
+index,book_key,book_number,package_size,book_color,book_subcategory,book_category,book_manufacturer,book_weight
+1,201,12,M,Black,Horror,Novel,L&G,1100
+2,202,14,L,White,SciFi,Novel,L&G,334
+3,203,45,L,Brown,Thriller,Novel,JKRowling,343
+4,204,65,L,Red,Horror,Novel,L&G,345
+5,205,76,L,Blue,Romance,Novel,L&G,654
+6,206,86,S,Gray,Education,Magazine,L&G,345
+7,207,54,L,White,Machines,Paper,L&G,665
+8,208,43,M,Black,Datasets,Transcript,L&G,122

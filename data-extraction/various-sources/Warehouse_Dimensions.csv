@@ -1,0 +1,4 @@
+index,warehouse_key,warehouse_number,package_size,warehouse_color,warehouse_subcategory,warehouse_category,warehouse_manufacturer,warehouse_weight
+1,0,1,M,Black,Book,Fragile,Bluedart,1100
+2,1,12,L,Black,Book,Fragile,Bluedart,1223
+3,2,10,L,Brown,Book,Fragile,Bluedart,2334

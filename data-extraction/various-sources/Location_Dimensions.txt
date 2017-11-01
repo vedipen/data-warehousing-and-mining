@@ -1,0 +1,4 @@
+index	location_key	location_number	package_size	location_color	location_subcategory	location_category	location_manufacturer	location_weight
+1	201	12	M	Black	Novel	Book	LG	1100
+2	204	12	L	Brown	Novel	Book	LG	1130
+3	206	12	M	Black	Novel	Book	LG	6170
